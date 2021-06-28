@@ -9,14 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '#'
-        script {
-          if (!(env.BRANCH_NAME).contains('jenkins') && !(env.BRANCH_NAME).startsWith('develop') && !(env.BRANCH_NAME).startsWith('staging/') && !(env.BRANCH_NAME).startsWith('release/') && !(env.BRANCH_NAME).startsWith('PR')){
-            env.gitTag=env.BRANCH_NAME
-          }
-          env.AUTHOR_NAME=sh(script: "printf \$(git show -s --format='%an' HEAD)", returnStdout: true)
-        }
-
+        sh 'npm install'
       }
     }
 
@@ -26,6 +19,12 @@ pipeline {
       }
       steps {
         sh './jenkins/scripts/test.sh'
+      }
+    }
+
+    stage('Deliver') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
       }
     }
 
