@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
+        sh '#npm install'
         script {
           if (!(env.BRANCH_NAME).contains('jenkins') && !(env.BRANCH_NAME).startsWith('develop') && !(env.BRANCH_NAME).startsWith('staging/') && !(env.BRANCH_NAME).startsWith('release/') && !(env.BRANCH_NAME).startsWith('PR')){
             env.gitTag=env.BRANCH_NAME
