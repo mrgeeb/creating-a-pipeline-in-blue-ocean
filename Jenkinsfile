@@ -27,6 +27,12 @@ pipeline {
         sh './jenkins/scripts/deliver.sh'
       }
     }
-
   }
+
+  post {
+    always {
+      echo 'Cleaning up workspace'
+      deleteDir()
+      }
+    }  
 }
