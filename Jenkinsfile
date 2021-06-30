@@ -1,38 +1,49 @@
 pipeline {
-  agent {
-    docker {
-      args '-p 3000:3000'
-      image 'justthunder/emberfire-docker'
-    }
-
-  }
+  agent none
+//   agent {
+//     docker {
+//       args '-p 3000:3000'
+//       image 'justthunder/emberfire-docker'
+//     }
+//
+//  }
   stages {
-    stage('Build') {
+    stage('Workspace Preparation') {
       steps {
-        sh 'npm install'
+          sh 'git submodule update --init --recursive'
+          script {
+            env.gitTag=sh(script: "git tag --sort=committerdate | tail -1 || true", returnStdout: true).trim()
+            env.AUTHOR_NAME=sh(script: "printf \$(git show -s --format='%an' HEAD)", returnStdout: true) 
+          }
       }
     }
+    
+//     stage('Build') {
+//       steps {
+//         sh 'npm install'
+//       }
+//     }
 
-    stage('Test') {
-      environment {
-        CI = 'true'
-      }
-      steps {
-        sh './jenkins/scripts/test.sh'
-      }
-    }
+//     stage('Test') {
+//       environment {
+//         CI = 'true'
+//       }
+//       steps {
+//         sh './jenkins/scripts/test.sh'
+//       }
+//     }
 
-    stage('Deliver') {
-      steps {
-        sh './jenkins/scripts/deliver.sh'
-      }
-    }    
-  }
-  post {
-    always {
-      echo 'Cleaning up workspace'
-      deleteDir()
-      }
-  } 
+//     stage('Deliver') {
+//       steps {
+//         sh './jenkins/scripts/deliver.sh'
+//       }
+//     }    
+//   }
+//   post {
+//     always {
+//       echo 'Cleaning up workspace'
+//       deleteDir()
+//       }
+//   } 
  
 }
