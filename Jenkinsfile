@@ -1,12 +1,5 @@
 pipeline {
   agent none
-//   agent {
-//     docker {
-//       args '-p 3000:3000'
-//       image 'justthunder/emberfire-docker'
-//     }
-//
-//  }
   stages {
     stage('Workspace Preparation') {
       steps {
