@@ -33,11 +33,11 @@ pipeline {
 //       }
 //     }    
 //   }
-//   post {
-//     always {
-//       echo 'Cleaning up workspace'
-//       deleteDir()
-//       }
-//   } 
+  post {
+    always {
+      echo 'Cleaning up workspace'
+      deleteDir()
+      }
+  } 
  
 }
