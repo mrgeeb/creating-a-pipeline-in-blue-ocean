@@ -40,7 +40,7 @@ echo "Unit Test from UAT"
         def cred="slack-secret4.0"
         def teamDomain="diamunfikri"
         def channel="secretproject-40"
-        slackSend channel: "${channel}", failOnError: true, color: "good", message: "${currentBuild.currentResult}:\n build no.${env.BUILD_NUMBER}", teamDomain: "${teamDomain}", tokenCredentialId: "${cred}"
+        slackSend channel: "${channel}", failOnError: true, color: "good", message: "${currentBuild.currentResult}:\n JOB: ${env.JOB_NAME} build no.${env.BUILD_NUMBER}", teamDomain: "${teamDomain}", tokenCredentialId: "${cred}"
       }
     }
 
