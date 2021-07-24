@@ -38,7 +38,8 @@ echo "Unit Test from UAT"
       deleteDir()
       script{
         def cred="slack-secret4.0"
-        slackSend channel: 'secretproject-40', failOnError: true, message: "build no.${env.BUILD_NUMBER}", teamDomain: 'diamunfikri', tokenCredentialId: "${cred}"
+        def teamDomain="diamunfikri"
+        slackSend channel: 'secretproject-40', failOnError: true, color: "good", message: "build no.${env.BUILD_NUMBER}", teamDomain: "${teamDomain}", tokenCredentialId: "${cred}"
       }
     }
 
