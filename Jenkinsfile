@@ -16,7 +16,6 @@ pipeline {
       steps {
         sh '''#/usr/bin/env bash
 echo "Unit Test from UAT"
-0 == 1
               
 
 
@@ -41,7 +40,7 @@ echo "Unit Test from UAT"
         def cred="slack-secret4.0"
         def teamDomain="diamunfikri"
         def channel="secretproject-40"
-        slackSend channel: "${channel}", failOnError: true, color: "good", message: "${currentBuild.currentResult}:\n JOB: ${env.JOB_NAME} build no.${env.BUILD_NUMBER}", teamDomain: "${teamDomain}", tokenCredentialId: "${cred}"
+        slackSend channel: "${channel}", failOnError: true, color: "good", message: "${currentBuild.currentResult}:\n JOB: ${env.JOB_NAME} build no.${env.BUILD_NUMBER}\n Environment: `${env}`\n by ${env.AUTHOR_NAME}\n More info at: ${env.BUILD_URL} ", teamDomain: "${teamDomain}", tokenCredentialId: "${cred}"
       }
     }
 
