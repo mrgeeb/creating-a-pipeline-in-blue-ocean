@@ -13,8 +13,8 @@ pipeline {
     }
 
     stage('error') {
-      steps {
-        sh '''#/usr/bin/env bash
+      stepss {
+        shs '''#/usr/bin/env bash
 echo "Unit Test from UAT"
               
 
