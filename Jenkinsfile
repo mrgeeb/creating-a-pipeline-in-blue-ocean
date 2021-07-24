@@ -37,7 +37,7 @@ echo "Unit Test from UAT"
       echo 'Cleaning up workspace'
       deleteDir()
       script{
-        slackSend channel: 'secretproject-40', failOnError: true, message: 'success or not', teamDomain: 'diamunfikri', tokenCredentialId: 'slack-secret4.0'
+        slackSend channel: 'secretproject-40', failOnError: true, message: "build no.${env.BUILD_NUMBER}", teamDomain: 'diamunfikri', tokenCredentialId: 'slack-secret4.0'
       }
     }
 
